@@ -195,8 +195,10 @@ MongoDB (Users, Sessions, Questions)
 ▼
 Gemini API (AI Prompt Generation)
 ```
+### ARCHITECTURE
 
-[View Demo](https://drive.google.com/file/d/1Eq2ieZkoAGPY6a20pIbdlMh5d__rAmpe/view?usp=sharing)
+![Preview](https://drive.google.com/uc?export=view&id=1Eq2ieZkoAGPY6a20pIbdlMh5d__rAmpe)
+
 
 
 ---
