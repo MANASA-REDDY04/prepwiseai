@@ -8,3 +8,4 @@ react-hot-toast
 react-icons
 react-router-dom
 tailwindcss
+lucide-react
