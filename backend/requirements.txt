@@ -1,0 +1,8 @@
+express
+bcryptjs
+cors
+dotenv
+jsonwebtoken
+mongoose
+multer
+@google/genai
