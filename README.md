@@ -2,6 +2,7 @@
 
 Prep Wiser AI is a full-stack MERN application integrated with the Gemini API to provide personalized AI-driven interview preparation. Users input their experience, topics of interest, and description to receive custom questions and session tracking.
 
+[![View Live](https://img.shields.io/badge/View_Live-PrepWiserAI-brightgreen?style=for-the-badge&logo=vercel)](https://prepwiseai-gamma.vercel.app/)
 
 ![Home Page](https://drive.google.com/uc?export=view&id=1AQVy_YuQI0GiyJp0Ka4Fl9KqTDWjM9G1)
 
