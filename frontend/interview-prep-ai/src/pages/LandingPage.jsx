@@ -134,7 +134,7 @@ const LandingPage = () => {
   © {new Date().getFullYear()} PrepWiser AI - Built for learners, with Precision, Created by Manasa Reddy Kandadi. All rights reserved.
       </div>
 </div>
-
+{/* updated */}
 
 
       <Modal
