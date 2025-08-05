@@ -130,9 +130,10 @@ const LandingPage = () => {
           </div>
         </div>
 
-{/*        <div className="text-sm bg-gray-50 text-secondary text-center p-5 mt-5">
+       <div className="text-sm bg-gray-50 text-secondary text-center p-5 mt-5">
   © {new Date().getFullYear()} PrepWiser AI - Built for learners, with Precision, Created by Manasa Reddy Kandadi. All rights reserved.
-</div> */}
+      </div>
+</div>
 
 
 
