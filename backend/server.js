@@ -11,11 +11,10 @@ const { protect } = require('./middlewares/authMiddleware');
 const { generateInterviewQuestions, generateConceptExplaination } = require('./controllers/aiController');
 
 const app = express();
-
+  // origin: "https://localhost:5173",
 // ✅ CORS setup
 app.use(cors({
   origin: "https://prepwiseai-gamma.vercel.app",
-  // origin: "https://localhost:5173",
   methods: ["GET", "POST", "PUT", "DELETE"],
   credentials: true,
 }));
