@@ -4,7 +4,7 @@ import Input from "../../components/Inputs/Input";
 import SpinnerLoader from "../../components/Loader/SpinnerLoader";
 import axiosInstance from "../../utils/axiosInstance";
 import { API_PATHS } from "../../utils/apiPaths";
-import SessionLoader from "../../components/Loader/SessionLoader";
+// import SessionLoader from "../../components/Loader/SessionLoader";
 
 const CreateSessionForm = () => {
   const [formData, setFormData] = useState({
