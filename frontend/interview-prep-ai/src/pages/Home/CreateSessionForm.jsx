@@ -4,8 +4,6 @@ import Input from "../../components/Inputs/Input";
 import SpinnerLoader from "../../components/Loader/SpinnerLoader";
 import axiosInstance from "../../utils/axiosInstance";
 import { API_PATHS } from "../../utils/apiPaths";
-import SessionLoader from "../../components/Loader/SessionLoader";
-import { motion, AnimatePresence } from "framer-motion";
 
 const CreateSessionForm = () => {
   const [formData, setFormData] = useState({
@@ -16,7 +14,6 @@ const CreateSessionForm = () => {
   });
 
   const [isLoading, setIsLoading] = useState(false);
-  const [isGeneratingQuestions, setIsGeneratingQuestions] = useState(false);
   const [error, setError] = useState(null);
 
   const navigate = useNavigate();
@@ -39,7 +36,6 @@ const CreateSessionForm = () => {
 
     setError("");
     setIsLoading(true);
-    setIsGeneratingQuestions(true);
 
     try {
       const token = localStorage.getItem("token");
@@ -76,6 +72,7 @@ const CreateSessionForm = () => {
 
       if (response.data?.session?._id) {
         navigate(`/interview-prep/${response.data?.session?._id}`);
+        console.log(response.data);
       }
     } catch (error) {
       if (error.response && error.response.data.message) {
@@ -85,84 +82,59 @@ const CreateSessionForm = () => {
       }
     } finally {
       setIsLoading(false);
-      setIsGeneratingQuestions(false);
     }
   };
 
   return (
-    <AnimatePresence mode="wait">
-      {isGeneratingQuestions ? (
-        <motion.div
-          key="loader"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-        >
-          <SessionLoader />
-        </motion.div>
-      ) : (
-        <motion.div
-          key="form"
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: -10 }}
-          transition={{ duration: 0.3 }}
-          className="w-[90vw] nd:w-[35vw] p-7 flex flex-col justify-center"
-        >
-          <h3 className="text-lg font-semibold text-black">
-            Start a new Interview Journey
-          </h3>
-          <p className="text-xs text-slate-700 nt-[5px] nb-3">
-            Fill out a few quick details and unlock your personalized set of
-            interview questions!
-          </p>
+    <div className="w-[90vw] nd:w-[35vw] p-7 flex flex-col justify-center">
+      <h3 className="text-lg font-semibold text-black">
+        Start a new Interview Journey
+      </h3>
+      <p className="text-xs text-slate-700 nt-[5px] nb-3">
+        Fill out a few quick details and unlock your personalized set of
+        interview questions!
+      </p>
 
-          <form onSubmit={handleCreateSession} className="flex flex-col gap-3">
-            <Input
-              value={formData.role}
-              onChange={({ target }) => handleChange("role", target.value)}
-              label="Target Role"
-              placeholder="(e.g. , Frontend Developer, UI/UX Designer, etc.)"
-              type="text"
-            />
-            <Input
-              value={formData.experience}
-              onChange={({ target }) => handleChange("experience", target.value)}
-              label="Years of Experience"
-              placeholder="(e.g., 1 year, 3 years, 5+ years)"
-              type="number"
-            />
-            <Input
-              value={formData.topicsToFocus}
-              onChange={({ target }) =>
-                handleChange("topicsToFocus", target.value)
-              }
-              label="Topics to Focus On"
-              placeholder="(Comma-separated, e.g., React, Node.js, MongoDB)"
-              type="text"
-            />
-            <Input
-              value={formData.description}
-              onChange={({ target }) =>
-                handleChange("description", target.value)
-              }
-              label="Session Description"
-              placeholder="(Any specific goals or notes for this session)"
-              type="text"
-            />
+      <form onSubmit={handleCreateSession} className="flex flex-col gap-3">
+        <Input
+          value={formData.role}
+          onChange={({ target }) => handleChange("role", target.value)}
+          label="Target Role"
+          placeholder="(e.g. , Frontend Developer, UI/UX Designer, etc.)"
+          type="text"
+        />
+        <Input
+          value={formData.experience}
+          onChange={({ target }) => handleChange("experience", target.value)}
+          label="Years of Experience"
+          placeholder="(e.g., 1 year, 3 years, 5+ years)"
+          type="number"
+        />
+        <Input
+          value={formData.topicsToFocus}
+          onChange={({ target }) => handleChange("topicsToFocus", target.value)}
+          label="Topics to Focus On"
+          placeholder="(Comma-separated, e.g., React, Node.js, MongoDB)"
+          type="text"
+        />
+        <Input
+          value={formData.description}
+          onChange={({ target }) => handleChange("description", target.value)}
+          label="Session Description"
+          placeholder="(Any specific goals or notes for this session)"
+          type="text"
+        />
 
-            {error && <p className="text-red-500 text-xs pb-2.5">{error}</p>}
-            <button
-              type="submit"
-              className="btn-primary w-full mt-2"
-              disabled={isLoading}
-            >
-              {isLoading && <SpinnerLoader size={20} />} Create Session
-            </button>
-          </form>
-        </motion.div>
-      )}
-    </AnimatePresence>
+        {error && <p className="text-red-500 text-xs pb-2.5">{error}</p>}
+        <button
+          type="submit"
+          className="btn-primary w-full mt-2"
+          disabled={isLoading}
+        >
+          {isLoading && <SpinnerLoader size={20} />} Create Session
+        </button>
+      </form>
+    </div>
   );
 };
 
