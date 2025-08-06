@@ -15,6 +15,7 @@ const app = express();
 // ✅ CORS setup
 app.use(cors({
   origin: "https://prepwiseai-gamma.vercel.app",
+  // origin: "https://localhost:5173",
   methods: ["GET", "POST", "PUT", "DELETE"],
   credentials: true,
 }));
