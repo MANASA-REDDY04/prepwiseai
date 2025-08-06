@@ -4,6 +4,7 @@ import Input from "../../components/Inputs/Input";
 import SpinnerLoader from "../../components/Loader/SpinnerLoader";
 import axiosInstance from "../../utils/axiosInstance";
 import { API_PATHS } from "../../utils/apiPaths";
+import SessionLoader from "../../components/Loader/SessionLoader";
 
 const CreateSessionForm = () => {
   const [formData, setFormData] = useState({
@@ -85,6 +86,16 @@ const CreateSessionForm = () => {
     }
   };
 
+  // 🟡 Return loader while loading
+  if (isLoading) {
+    return (
+      <div className="flex justify-center items-center h-full w-full">
+        <SessionLoader />
+      </div>
+    );
+  }
+
+  // ✅ Default form render
   return (
     <div className="w-[90vw] nd:w-[35vw] p-7 flex flex-col justify-center">
       <h3 className="text-lg font-semibold text-black">
