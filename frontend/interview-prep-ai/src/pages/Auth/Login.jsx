@@ -52,22 +52,25 @@ const Login = ({ setCurrentPage }) => {
     }
   };
 
- const handleGoogleAuth = async (credentialResponse) => {
+const handleGoogleAuth = async (credentialResponse) => {
   try {
     const { credential } = credentialResponse;
-    const decoded = jwt_decode(credential); // optional, mostly for logging
+    const decoded = jwt_decode(credential);
     console.log("Google Auth success:", decoded);
 
+    // 🚀 Immediately navigate or close form here
+    navigate("/dashboard"); 
+
+    // Continue with backend call in background
     const response = await axiosInstance.post(
-      "/api/auth/google", // Make sure this is correct
+      "/api/auth/google",
       { credential }
     );
 
     const { token } = response.data;
     if (token) {
       localStorage.setItem("token", token); 
-      updateUser(response.data);             
-      navigate("/dashboard");                
+      updateUser(response.data);
     }
   } catch (err) {
     console.error("Google Auth error:", err);
