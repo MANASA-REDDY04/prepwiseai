@@ -60,28 +60,31 @@ const SignUp = ({ setCurrentPage }) => {
 
   // ✅ Custom Google SignUp
   const googleSignup = useGoogleLogin({
-    onSuccess: async (tokenResponse) => {
-      try {
-        const res = await axiosInstance.post("/api/auth/google", {
-          credential: tokenResponse.access_token,
-        });
+  onSuccess: async (tokenResponse) => {
+    try {
+      // ⏩ Close the modal or navigate immediately
+      navigate("/dashboard"); 
 
-        const { token } = res.data;
-        if (token) {
-          localStorage.setItem("token", token);
-          updateUser(res.data);
-          navigate("/dashboard");
-        }
-      } catch (err) {
-        console.error("Google signup error:", err);
-        setError("Google sign-up failed. Please try again.");
+      // Continue with backend in the background
+      const res = await axiosInstance.post("/api/auth/google", {
+        credential: tokenResponse.access_token,
+      });
+
+      const { token } = res.data;
+      if (token) {
+        localStorage.setItem("token", token);
+        updateUser(res.data);
       }
-    },
-    onError: () => {
+    } catch (err) {
+      console.error("Google signup error:", err);
       setError("Google sign-up failed. Please try again.");
-    },
-    flow: 'implicit' // or 'auth-code' depending on your Google Console setup
-  });
+    }
+  },
+  onError: () => {
+    setError("Google sign-up failed. Please try again.");
+  },
+  flow: 'implicit'
+});
 
   return (
     <div className='w-[90vw] md:w-[33vw] p-7 flex flex-col justify-center'>
